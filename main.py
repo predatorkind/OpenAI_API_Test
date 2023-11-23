@@ -8,6 +8,12 @@ from PIL import ImageTk, Image
 
 
 def generate_image(prompt):
+    """
+    Generate an image based on the given prompt.
+
+    :param prompt: The prompt for generating the image.
+    :return: None
+    """
     client = OpenAI(
         api_key=os.getenv("OPENAI_API_KEY")
     )
@@ -35,7 +41,20 @@ def generate_image(prompt):
     image_label.configure(image=image)
     image_label.image = image
 
+
 def handle_generate(event):
+    """
+
+    :param event: The event object that triggered the method.
+    :return: None
+
+    This method is called when the user clicks a button or triggers an event to generate an image based on a user prompt. It gets the user prompt from an entry field and validates it before generating the image.
+
+    The event parameter contains information about the event that triggered this method.
+
+    The return statement does not return any value.
+
+    """
     prompt = entry.get()
     print(f"User prompt: {prompt}")
     if prompt.strip() == "":
@@ -46,8 +65,14 @@ def handle_generate(event):
         generate_image(prompt)
 
 
+
+
+
+# load OpenAI API key from .env as an environment variable
 load_dotenv(find_dotenv())
 
+
+# create simple GUI
 window = tk.Tk()
 window.title("Image Generator")
 style = ttk.Style()
